@@ -26,6 +26,12 @@ const app = express();
 const server = http.createServer(app);
 const port = process.env.PORT || 9000;
 
+// ✅ Move this ABOVE all usage
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://lnf-client.onrender.com' 
+];
+
 const io = new Server(server, {
     cors: {
         origin: allowedOrigins,
@@ -34,13 +40,7 @@ const io = new Server(server, {
     }
 });
 
-
 app.set('socketio', io);
-
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://lnf-client.onrender.com' 
-];
 
 app.use(cors({
     origin: allowedOrigins,
@@ -49,12 +49,9 @@ app.use(cors({
     credentials: true
 }));
 
-
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-
 
 connectdb();
 
@@ -81,7 +78,6 @@ io.on('connection', (socket) => {
 app.get('/', (req, res) => {
   res.send('Lost and Found Backend is running ✅');
 });
-
 
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
