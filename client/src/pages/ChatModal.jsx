@@ -4,7 +4,7 @@ import { io } from 'socket.io-client';
 import { Send, X, Loader } from 'lucide-react';
 import axios from 'axios'; 
 
-const socket = io('http://localhost:8000', { 
+const socket = io('${import.meta.env.VITE_API_URL}', { 
     withCredentials: true
 });
 
@@ -26,7 +26,7 @@ const ChatModal = ({ currentUserId, chatPartner, onClose }) => {
             setError(null);
             try {
                 const response = await axios.post(
-                    'http://localhost:8000/apis/lost-and-found/chat/room', 
+                    '${import.meta.env.VITE_API_URL}/apis/lost-and-found/chat/room', 
                     { otherUserId: chatPartner.id },
                     { withCredentials: true }
                 );
@@ -36,7 +36,7 @@ const ChatModal = ({ currentUserId, chatPartner, onClose }) => {
                 socket.emit('joinRoom', fetchedRoomId);
 
                 const historyResponse = await axios.get(
-                    `http://localhost:8000/apis/lost-and-found/chat/history/${fetchedRoomId}`,
+                    `${import.meta.env.VITE_API_URL}/apis/lost-and-found/chat/history/${fetchedRoomId}`,
                     { withCredentials: true }
                 );
                 setMessages(historyResponse.data);
@@ -94,7 +94,7 @@ const ChatModal = ({ currentUserId, chatPartner, onClose }) => {
 
 
                 await axios.post(
-                    'http://localhost:8000/apis/lost-and-found/chat/message',
+                    '${import.meta.env.VITE_API_URL}/apis/lost-and-found/chat/message',
                     { roomId, message: inputMessage.trim() },
                     { withCredentials: true }
                 );

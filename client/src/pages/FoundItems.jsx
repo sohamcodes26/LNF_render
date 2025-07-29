@@ -27,7 +27,7 @@ const FoundItems = () => {
 
       try {
         const response = await axios.get(
-          "http://localhost:8000/apis/lost-and-found/my-items/my-found-items",
+          "${import.meta.env.VITE_API_URL}/apis/lost-and-found/my-items/my-found-items",
           config
         );
         setFoundItems(response.data.foundItems);
