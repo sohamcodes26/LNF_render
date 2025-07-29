@@ -28,20 +28,27 @@ const port = process.env.PORT || 9000;
 
 const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:5173',
+        origin: allowedOrigins,
         methods: ['GET', 'POST'],
         credentials: true
     }
 });
 
+
 app.set('socketio', io);
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://lnf-client.onrender.com' 
+];
+
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'OPTIONS', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
+
 
 app.use(cookieParser());
 app.use(express.json());
