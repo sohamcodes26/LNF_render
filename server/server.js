@@ -29,7 +29,7 @@ const port = process.env.PORT || 9000;
 // ✅ Move this ABOVE all usage
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://lnf-client.onrender.com' 
+  'hhttps://lnf-clien.onrender.comttps://lnf-clien.onrender.com' 
 ];
 
 const io = new Server(server, {
