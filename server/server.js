@@ -30,7 +30,7 @@ const port = process.env.PORT || 9000;
 // ✅ Move this ABOVE all usage
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://lnf-clien.onrender.com' 
+  'https://kaleidoscopic-shortbread-769589.netlify.app/' 
 ];
 
 const io = new Server(server, {
