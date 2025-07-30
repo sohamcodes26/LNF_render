@@ -5,6 +5,7 @@ import express from "express";
 import cors from 'cors';
 import cookieParser from "cookie-parser";
 import http from 'http';
+
 import { Server } from 'socket.io';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -29,7 +30,7 @@ const port = process.env.PORT || 9000;
 // ✅ Move this ABOVE all usage
 const allowedOrigins = [
   'http://localhost:5173',
-  'hhttps://lnf-clien.onrender.comttps://lnf-clien.onrender.com' 
+  'https://lnf-render.onrender.com' 
 ];
 
 const io = new Server(server, {
